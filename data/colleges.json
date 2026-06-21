@@ -1,0 +1,647 @@
+[
+  {
+    "id": "clg001",
+    "name": "Indian Institute of Technology Bombay",
+    "logo": "https://placehold.co/200x200?text=IITB",
+    "location": "Mumbai, Maharashtra",
+    "type": "Public",
+    "establishedYear": 1958,
+    "overallRating": 4.9,
+    "fees": 230000,
+    "NIRFRank": 3,
+    "description": "IIT Bombay is one of India's premier engineering institutes known for cutting-edge research, innovation, and entrepreneurship. The campus hosts a vibrant technical culture with excellent placements and global collaborations.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 230000,
+        "cutoffRank": 68
+      },
+      {
+        "name": "B.Tech Electrical Engineering",
+        "duration": "4 Years",
+        "fees": 225000,
+        "cutoffRank": 450
+      }
+    ],
+    "placements": {
+      "highestPackage": 21000000,
+      "averagePackage": 3200000,
+      "topRecruiters": ["Google", "Microsoft", "Apple", "Goldman Sachs"]
+    },
+    "reviews": [
+      {
+        "author": "Rohan M.",
+        "rating": 5,
+        "text": "Exceptional faculty and an amazing peer group. Placements are top tier."
+      },
+      {
+        "author": "Sneha P.",
+        "rating": 4.8,
+        "text": "Campus life is intense but rewarding with tons of opportunities."
+      }
+    ]
+  },
+  {
+    "id": "clg002",
+    "name": "Indian Institute of Technology Delhi",
+    "logo": "https://placehold.co/200x200?text=IITD",
+    "location": "New Delhi, Delhi",
+    "type": "Public",
+    "establishedYear": 1961,
+    "overallRating": 4.8,
+    "fees": 240000,
+    "NIRFRank": 2,
+    "description": "IIT Delhi is widely respected for academic excellence, startup culture, and strong industry ties. The institute consistently produces leading engineers, researchers, and entrepreneurs.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 240000,
+        "cutoffRank": 102
+      },
+      {
+        "name": "B.Tech Mechanical Engineering",
+        "duration": "4 Years",
+        "fees": 220000,
+        "cutoffRank": 1800
+      }
+    ],
+    "placements": {
+      "highestPackage": 18000000,
+      "averagePackage": 2900000,
+      "topRecruiters": ["Amazon", "Adobe", "Intel", "McKinsey"]
+    },
+    "reviews": [
+      {
+        "author": "Ankit S.",
+        "rating": 4.9,
+        "text": "Great research exposure and internship opportunities."
+      },
+      {
+        "author": "Priya K.",
+        "rating": 4.7,
+        "text": "Academics are rigorous but the campus environment is fantastic."
+      }
+    ]
+  },
+  {
+    "id": "clg003",
+    "name": "Indian Institute of Technology Madras",
+    "logo": "https://placehold.co/200x200?text=IITM",
+    "location": "Chennai, Tamil Nadu",
+    "type": "Public",
+    "establishedYear": 1959,
+    "overallRating": 4.9,
+    "fees": 235000,
+    "NIRFRank": 1,
+    "description": "IIT Madras is India's top-ranked engineering institute renowned for innovation, AI research, and entrepreneurship. Its lush green campus and strong alumni network make it highly sought after.",
+    "courses": [
+      {
+        "name": "B.Tech AI and Data Science",
+        "duration": "4 Years",
+        "fees": 240000,
+        "cutoffRank": 150
+      },
+      {
+        "name": "B.Tech Civil Engineering",
+        "duration": "4 Years",
+        "fees": 210000,
+        "cutoffRank": 5200
+      }
+    ],
+    "placements": {
+      "highestPackage": 19500000,
+      "averagePackage": 3000000,
+      "topRecruiters": ["Qualcomm", "Google", "Uber", "JP Morgan"]
+    },
+    "reviews": [
+      {
+        "author": "Vikas T.",
+        "rating": 5,
+        "text": "The research ecosystem here is unmatched."
+      },
+      {
+        "author": "Meera R.",
+        "rating": 4.8,
+        "text": "Amazing coding culture and excellent placements."
+      }
+    ]
+  },
+  {
+    "id": "clg004",
+    "name": "National Institute of Technology Trichy",
+    "logo": "https://placehold.co/200x200?text=NITT",
+    "location": "Tiruchirappalli, Tamil Nadu",
+    "type": "Public",
+    "establishedYear": 1964,
+    "overallRating": 4.6,
+    "fees": 175000,
+    "NIRFRank": 9,
+    "description": "NIT Trichy is among the best NITs in India with strong academics and excellent placement records. The institute has a vibrant technical and cultural atmosphere.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 175000,
+        "cutoffRank": 1200
+      },
+      {
+        "name": "B.Tech Electronics and Communication",
+        "duration": "4 Years",
+        "fees": 170000,
+        "cutoffRank": 4200
+      }
+    ],
+    "placements": {
+      "highestPackage": 5200000,
+      "averagePackage": 1450000,
+      "topRecruiters": ["Oracle", "Cisco", "TCS", "Accenture"]
+    },
+    "reviews": [
+      {
+        "author": "Rahul D.",
+        "rating": 4.7,
+        "text": "Best NIT experience with strong alumni support."
+      },
+      {
+        "author": "Lavanya S.",
+        "rating": 4.5,
+        "text": "Campus life and placements are both excellent."
+      }
+    ]
+  },
+  {
+    "id": "clg005",
+    "name": "Birla Institute of Technology and Science Pilani",
+    "logo": "https://placehold.co/200x200?text=BITS",
+    "location": "Pilani, Rajasthan",
+    "type": "Private",
+    "establishedYear": 1964,
+    "overallRating": 4.7,
+    "fees": 550000,
+    "NIRFRank": 20,
+    "description": "BITS Pilani is known for academic flexibility, strong coding culture, and industry-oriented programs. The institute's Practice School program provides exceptional industry exposure.",
+    "courses": [
+      {
+        "name": "B.E. Computer Science",
+        "duration": "4 Years",
+        "fees": 550000,
+        "cutoffRank": 2500
+      },
+      {
+        "name": "B.E. Electronics and Instrumentation",
+        "duration": "4 Years",
+        "fees": 520000,
+        "cutoffRank": 6500
+      }
+    ],
+    "placements": {
+      "highestPackage": 6000000,
+      "averagePackage": 1800000,
+      "topRecruiters": ["Nvidia", "Amazon", "Deloitte", "Samsung"]
+    },
+    "reviews": [
+      {
+        "author": "Karan J.",
+        "rating": 4.8,
+        "text": "Flexible academics and incredible startup ecosystem."
+      },
+      {
+        "author": "Neha A.",
+        "rating": 4.6,
+        "text": "The PS internships are a huge advantage."
+      }
+    ]
+  },
+  {
+    "id": "clg006",
+    "name": "Vellore Institute of Technology",
+    "logo": "https://placehold.co/200x200?text=VIT",
+    "location": "Vellore, Tamil Nadu",
+    "type": "Private",
+    "establishedYear": 1984,
+    "overallRating": 4.4,
+    "fees": 350000,
+    "NIRFRank": 11,
+    "description": "VIT offers modern infrastructure, global collaborations, and a large student community. It is especially known for strong placement opportunities in software and core engineering roles.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 390000,
+        "cutoffRank": 8000
+      },
+      {
+        "name": "B.Tech Biotechnology",
+        "duration": "4 Years",
+        "fees": 300000,
+        "cutoffRank": 25000
+      }
+    ],
+    "placements": {
+      "highestPackage": 10200000,
+      "averagePackage": 950000,
+      "topRecruiters": ["Infosys", "Microsoft", "PayPal", "Wipro"]
+    },
+    "reviews": [
+      {
+        "author": "Arjun V.",
+        "rating": 4.5,
+        "text": "Huge campus with great placement support."
+      },
+      {
+        "author": "Shreya N.",
+        "rating": 4.2,
+        "text": "Crowded but offers plenty of opportunities."
+      }
+    ]
+  },
+  {
+    "id": "clg007",
+    "name": "Manipal Institute of Technology",
+    "logo": "https://placehold.co/200x200?text=MIT",
+    "location": "Manipal, Karnataka",
+    "type": "Private",
+    "establishedYear": 1957,
+    "overallRating": 4.3,
+    "fees": 420000,
+    "NIRFRank": 15,
+    "description": "Manipal Institute of Technology is known for its diverse student culture and industry-focused curriculum. The institute provides strong exposure through clubs, hackathons, and internships.",
+    "courses": [
+      {
+        "name": "B.Tech Information Technology",
+        "duration": "4 Years",
+        "fees": 420000,
+        "cutoffRank": 12000
+      },
+      {
+        "name": "B.Tech Aeronautical Engineering",
+        "duration": "4 Years",
+        "fees": 400000,
+        "cutoffRank": 30000
+      }
+    ],
+    "placements": {
+      "highestPackage": 5400000,
+      "averagePackage": 1050000,
+      "topRecruiters": ["Dell", "Amazon", "IBM", "Capgemini"]
+    },
+    "reviews": [
+      {
+        "author": "Aditi R.",
+        "rating": 4.4,
+        "text": "Amazing campus life and decent placements."
+      },
+      {
+        "author": "Yash P.",
+        "rating": 4.1,
+        "text": "Lots of extracurricular activities and networking."
+      }
+    ]
+  },
+  {
+    "id": "clg008",
+    "name": "SRM Institute of Science and Technology",
+    "logo": "https://placehold.co/200x200?text=SRM",
+    "location": "Chennai, Tamil Nadu",
+    "type": "Private",
+    "establishedYear": 1985,
+    "overallRating": 4.2,
+    "fees": 320000,
+    "NIRFRank": 28,
+    "description": "SRM University has a large student ecosystem with strong emphasis on placements and international collaborations. It offers modern infrastructure and active technical communities.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 350000,
+        "cutoffRank": 15000
+      },
+      {
+        "name": "B.Tech Mechanical Engineering",
+        "duration": "4 Years",
+        "fees": 280000,
+        "cutoffRank": 45000
+      }
+    ],
+    "placements": {
+      "highestPackage": 5700000,
+      "averagePackage": 850000,
+      "topRecruiters": ["TCS", "Cognizant", "Amazon", "Zoho"]
+    },
+    "reviews": [
+      {
+        "author": "Divya L.",
+        "rating": 4.1,
+        "text": "Good placements and modern facilities."
+      },
+      {
+        "author": "Nitin B.",
+        "rating": 4.3,
+        "text": "Strong coding culture with many events."
+      }
+    ]
+  },
+  {
+    "id": "clg009",
+    "name": "Delhi Technological University",
+    "logo": "https://placehold.co/200x200?text=DTU",
+    "location": "New Delhi, Delhi",
+    "type": "Public",
+    "establishedYear": 1941,
+    "overallRating": 4.5,
+    "fees": 190000,
+    "NIRFRank": 29,
+    "description": "DTU is one of India's oldest engineering colleges with strong placements and vibrant student culture. It is especially popular among students interested in software engineering and startups.",
+    "courses": [
+      {
+        "name": "B.Tech Software Engineering",
+        "duration": "4 Years",
+        "fees": 190000,
+        "cutoffRank": 2800
+      },
+      {
+        "name": "B.Tech Civil Engineering",
+        "duration": "4 Years",
+        "fees": 160000,
+        "cutoffRank": 22000
+      }
+    ],
+    "placements": {
+      "highestPackage": 8500000,
+      "averagePackage": 1500000,
+      "topRecruiters": ["Google", "Atlassian", "Adobe", "Microsoft"]
+    },
+    "reviews": [
+      {
+        "author": "Ishaan K.",
+        "rating": 4.6,
+        "text": "Excellent coding environment and student life."
+      },
+      {
+        "author": "Pooja G.",
+        "rating": 4.4,
+        "text": "Placements are excellent for tech branches."
+      }
+    ]
+  },
+  {
+    "id": "clg010",
+    "name": "National Institute of Technology Surathkal",
+    "logo": "https://placehold.co/200x200?text=NITK",
+    "location": "Mangalore, Karnataka",
+    "type": "Public",
+    "establishedYear": 1960,
+    "overallRating": 4.6,
+    "fees": 165000,
+    "NIRFRank": 12,
+    "description": "NIT Surathkal combines strong academics with one of the most scenic campuses in India. It is highly regarded for placements in both software and core sectors.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 165000,
+        "cutoffRank": 1800
+      },
+      {
+        "name": "B.Tech Chemical Engineering",
+        "duration": "4 Years",
+        "fees": 150000,
+        "cutoffRank": 12000
+      }
+    ],
+    "placements": {
+      "highestPackage": 5500000,
+      "averagePackage": 1450000,
+      "topRecruiters": ["Oracle", "Intel", "Texas Instruments", "Amazon"]
+    },
+    "reviews": [
+      {
+        "author": "Manoj R.",
+        "rating": 4.7,
+        "text": "Beautiful campus and strong placements."
+      },
+      {
+        "author": "Harini S.",
+        "rating": 4.5,
+        "text": "Great student culture and coding community."
+      }
+    ]
+  },
+  {
+    "id": "clg011",
+    "name": "IIIT Hyderabad",
+    "logo": "https://placehold.co/200x200?text=IIITH",
+    "location": "Hyderabad, Telangana",
+    "type": "Private",
+    "establishedYear": 1998,
+    "overallRating": 4.8,
+    "fees": 450000,
+    "NIRFRank": 55,
+    "description": "IIIT Hyderabad is highly respected for computer science research and innovation. The institute has a rigorous curriculum and exceptional placements in AI and software engineering.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 450000,
+        "cutoffRank": 900
+      },
+      {
+        "name": "B.Tech Electronics and Communication",
+        "duration": "4 Years",
+        "fees": 420000,
+        "cutoffRank": 3500
+      }
+    ],
+    "placements": {
+      "highestPackage": 12000000,
+      "averagePackage": 3200000,
+      "topRecruiters": ["Google", "Facebook", "Apple", "Nvidia"]
+    },
+    "reviews": [
+      {
+        "author": "Tejas H.",
+        "rating": 4.9,
+        "text": "The coding culture here is unreal."
+      },
+      {
+        "author": "Sana Q.",
+        "rating": 4.7,
+        "text": "Excellent faculty and research opportunities."
+      }
+    ]
+  },
+  {
+    "id": "clg012",
+    "name": "Amity University Noida",
+    "logo": "https://placehold.co/200x200?text=AMITY",
+    "location": "Noida, Uttar Pradesh",
+    "type": "Private",
+    "establishedYear": 2005,
+    "overallRating": 4.0,
+    "fees": 300000,
+    "NIRFRank": 35,
+    "description": "Amity University offers a wide range of engineering and technology programs with modern infrastructure. It focuses heavily on industry exposure and extracurricular development.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 320000,
+        "cutoffRank": 40000
+      },
+      {
+        "name": "B.Tech Artificial Intelligence",
+        "duration": "4 Years",
+        "fees": 350000,
+        "cutoffRank": 30000
+      }
+    ],
+    "placements": {
+      "highestPackage": 4500000,
+      "averagePackage": 700000,
+      "topRecruiters": ["Infosys", "HCL", "Accenture", "EY"]
+    },
+    "reviews": [
+      {
+        "author": "Ritika S.",
+        "rating": 4,
+        "text": "Good infrastructure and exposure opportunities."
+      },
+      {
+        "author": "Abhishek T.",
+        "rating": 3.9,
+        "text": "Decent placements and active campus life."
+      }
+    ]
+  },
+  {
+    "id": "clg013",
+    "name": "PES University",
+    "logo": "https://placehold.co/200x200?text=PES",
+    "location": "Bengaluru, Karnataka",
+    "type": "Private",
+    "establishedYear": 1972,
+    "overallRating": 4.4,
+    "fees": 450000,
+    "NIRFRank": 83,
+    "description": "PES University is known for its strong placement records and focus on software engineering. Located in Bengaluru, it benefits from close industry interaction with top tech firms.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Science",
+        "duration": "4 Years",
+        "fees": 450000,
+        "cutoffRank": 5000
+      },
+      {
+        "name": "B.Tech Electronics and Communication",
+        "duration": "4 Years",
+        "fees": 400000,
+        "cutoffRank": 15000
+      }
+    ],
+    "placements": {
+      "highestPackage": 6500000,
+      "averagePackage": 1200000,
+      "topRecruiters": ["Cisco", "SAP", "Microsoft", "Flipkart"]
+    },
+    "reviews": [
+      {
+        "author": "Naveen P.",
+        "rating": 4.5,
+        "text": "Very strong placements for CS students."
+      },
+      {
+        "author": "Keerthi M.",
+        "rating": 4.3,
+        "text": "Academic workload is high but worth it."
+      }
+    ]
+  },
+  {
+    "id": "clg014",
+    "name": "Jadavpur University",
+    "logo": "https://placehold.co/200x200?text=JU",
+    "location": "Kolkata, West Bengal",
+    "type": "Public",
+    "establishedYear": 1955,
+    "overallRating": 4.7,
+    "fees": 12000,
+    "NIRFRank": 10,
+    "description": "Jadavpur University is famous for excellent ROI, academic rigor, and strong engineering placements. It attracts top recruiters while maintaining extremely affordable fees.",
+    "courses": [
+      {
+        "name": "B.E. Computer Science",
+        "duration": "4 Years",
+        "fees": 12000,
+        "cutoffRank": 900
+      },
+      {
+        "name": "B.E. Mechanical Engineering",
+        "duration": "4 Years",
+        "fees": 10000,
+        "cutoffRank": 5000
+      }
+    ],
+    "placements": {
+      "highestPackage": 18000000,
+      "averagePackage": 1400000,
+      "topRecruiters": ["Google", "Amazon", "DE Shaw", "TCS"]
+    },
+    "reviews": [
+      {
+        "author": "Sourav D.",
+        "rating": 4.8,
+        "text": "Best ROI among engineering colleges."
+      },
+      {
+        "author": "Ananya C.",
+        "rating": 4.6,
+        "text": "Strong academics with amazing placements."
+      }
+    ]
+  },
+  {
+    "id": "clg015",
+    "name": "Thapar Institute of Engineering and Technology",
+    "logo": "https://placehold.co/200x200?text=THAPAR",
+    "location": "Patiala, Punjab",
+    "type": "Private",
+    "establishedYear": 1956,
+    "overallRating": 4.3,
+    "fees": 410000,
+    "NIRFRank": 20,
+    "description": "Thapar Institute is one of India's leading private engineering colleges with a strong reputation in academics and placements. The institute offers excellent infrastructure and active industry partnerships.",
+    "courses": [
+      {
+        "name": "B.Tech Computer Engineering",
+        "duration": "4 Years",
+        "fees": 410000,
+        "cutoffRank": 9000
+      },
+      {
+        "name": "B.Tech Electrical Engineering",
+        "duration": "4 Years",
+        "fees": 370000,
+        "cutoffRank": 22000
+      }
+    ],
+    "placements": {
+      "highestPackage": 5500000,
+      "averagePackage": 1100000,
+      "topRecruiters": ["Infosys", "Amazon", "Morgan Stanley", "Deloitte"]
+    },
+    "reviews": [
+      {
+        "author": "Gurpreet S.",
+        "rating": 4.4,
+        "text": "Excellent infrastructure and supportive faculty."
+      },
+      {
+        "author": "Simran K.",
+        "rating": 4.2,
+        "text": "Placements are consistently good for tech branches."
+      }
+    ]
+  }
+]
