@@ -35,6 +35,7 @@ interface PredictionResult {
 }
 
 export default function PredictorPage() {
+  const { data: session } = useSession();
   const [rank, setRank] = useState<string>('');
   const [stream, setStream] = useState<string>('All');
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
