@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { GraduationCap } from 'lucide-react';
+import LanguageToggle from '@/components/LanguageToggle';
 
 export default function Navbar() {
   return (
@@ -27,6 +28,8 @@ export default function Navbar() {
 
         {/* Right Side */}
         <div className="flex items-center gap-4 text-sm font-medium">
+          <LanguageToggle />
+          <div id="google_translate_element" className="hidden" />
           <Link href="/saved" className="text-slate-600 hover:text-slate-900 transition-colors">
             Saved
           </Link>
