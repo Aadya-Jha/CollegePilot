@@ -72,24 +72,38 @@ export default function ListingPage() {
       
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         {/* Top Search Hero Banner */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 md:p-10 text-white mb-8 shadow-md">
-          <h1 className="text-2xl md:text-4xl font-bold mb-3">Find Your Ideal College</h1>
-          <p className="text-blue-100 mb-6 text-sm md:text-base max-w-2xl">
-            Explore and filter through India's premier institutes based on cutting-edge parameters, fees, placements, and locations.
+        <section className="mb-12">
+        <div className="max-w-4xl">
+          <p className="text-sm font-semibold tracking-wide uppercase text-blue-700 mb-3">
+            College Discovery Platform
           </p>
-          <div className="relative max-w-xl shadow-lg rounded-lg overflow-hidden">
-            <Input 
-              type="text" 
-              placeholder="Search by college name, city or branch..." 
+
+          <h1 className="font-heading text-5xl md:text-6xl leading-tight text-slate-900 mb-4">
+            Find the Right College
+            <br />
+            For Your Future
+          </h1>
+
+          <p className="text-lg text-slate-600 max-w-3xl mb-8 leading-relaxed">
+            Explore colleges, compare fees and placements, and make
+            informed admission decisions with reliable data from top
+            institutions across India.
+          </p>
+
+          <div className="max-w-2xl">
+            <Input
+              type="text"
+              placeholder="Search colleges, cities, courses..."
               value={searchQuery}
-              onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(6); }}
-              className="w-full bg-white text-black pl-4 pr-12 py-6 border-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setVisibleCount(6);
+              }}
+              className="h-14 rounded-xl border-slate-300 bg-white text-base shadow-sm"
             />
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-              <Filter className="h-5 w-5" />
-            </div>
           </div>
         </div>
+        </section>
 
         {/* Two Column Workspace Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
