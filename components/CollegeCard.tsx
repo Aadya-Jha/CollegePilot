@@ -1,5 +1,11 @@
+'use client';
+
 import Link from 'next/link';
-import { MapPin, Star, TrendingUp, IndianRupee } from 'lucide-react';
+import { MapPin, Star, TrendingUp, Bookmark } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 interface CollegeCardProps {
   college: {
@@ -16,6 +22,11 @@ interface CollegeCardProps {
 }
 
 export default function CollegeCard({ college }: CollegeCardProps) {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+
   const initials = college.name
     .split(' ')
     .filter((w) => w.length > 2)
@@ -27,19 +38,68 @@ export default function CollegeCard({ college }: CollegeCardProps) {
     ? `₹${(college.fees / 100000).toFixed(1)}L / yr`
     : `₹${college.fees.toLocaleString('en-IN')} / yr`;
 
+  const handleSave = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!session) {
+      toast.error('Please sign in to save colleges');
+      router.push('/auth/signin');
+      return;
+    }
+
+    setSaving(true);
+    try {
+      if (saved) {
+        await fetch('/api/saved', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ collegeId: college.id }),
+        });
+        setSaved(false);
+        toast.success('College removed from saved');
+      } else {
+        await fetch('/api/saved', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ collegeId: college.id }),
+        });
+        setSaved(true);
+        toast.success('College saved!');
+      }
+    } catch {
+      toast.error('Something went wrong');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <Link href={`/colleges/${college.id}`}>
       <div className="bg-white border border-slate-200 rounded-xl p-5 border-l-4 border-l-blue-600 hover:border-blue-300 hover:shadow-md transition-all duration-200 cursor-pointer h-full flex flex-col justify-between">
-        
+
         {/* Top Row */}
         <div>
           <div className="flex items-start justify-between mb-3">
             <div className="h-11 w-11 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center font-bold text-blue-700 text-sm flex-shrink-0">
               {initials || college.name.substring(0, 2).toUpperCase()}
             </div>
-            <div className="flex items-center gap-1 text-amber-600 text-sm font-semibold">
-              <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-              {college.overallRating}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleSave}
+                disabled={saving}
+                className={`p-1.5 rounded-lg transition-colors ${
+                  saved
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-slate-400 hover:text-blue-600 hover:bg-blue-50'
+                }`}
+              >
+                <Bookmark className={`h-4 w-4 ${saved ? 'fill-blue-600' : ''}`} />
+              </button>
+              <div className="flex items-center gap-1 text-amber-600 text-sm font-semibold">
+                <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                {college.overallRating}
+              </div>
             </div>
           </div>
 
@@ -71,7 +131,7 @@ export default function CollegeCard({ college }: CollegeCardProps) {
         <div className="border-t border-slate-100 pt-3 grid grid-cols-2 gap-3">
           <div>
             <p className="text-[10px] text-slate-400 uppercase tracking-wide font-semibold mb-0.5">Avg Fees</p>
-            <p className="text-sm font-semibold text-slate-700 flex items-center gap-0.5">
+            <p className="text-sm font-semibold text-slate-700">
               {feesDisplay}
             </p>
           </div>

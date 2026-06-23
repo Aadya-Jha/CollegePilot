@@ -6,9 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Sparkles, HelpCircle, GraduationCap, ArrowUpRight, AlertCircle } from 'lucide-react';
+import { Sparkles, HelpCircle, GraduationCap, ArrowUpRight, AlertCircle,Bookmark } from 'lucide-react';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 interface Course {
   name: string;
@@ -191,7 +192,7 @@ export default function PredictorPage() {
                 </p>
               </div>
             ) : (
-              <Card className="bg-white border-slate-200 shadow-sm overflow-hidden">
+              <Card className="bg-white border-slate-200 shadow-sm overflow-x-auto">
                 <CardHeader className="pb-3 border-b">
                   <CardTitle className="text-lg font-bold text-slate-800">
                     {predictions.length} Colleges Found
@@ -236,11 +237,31 @@ export default function PredictorPage() {
                             </span>
                           </TableCell>
                           <TableCell className="p-4 text-right">
-                            <Link href={`/colleges/${item.collegeId}`}>
-                              <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-blue-600 rounded-lg">
-                                <ArrowUpRight className="h-4 w-4" />
-                              </Button>
-                            </Link>
+                            <div className="flex items-center justify-end gap-1">
+                              <button
+                                onClick={async (e) => {
+                                  e.preventDefault();
+                                  if (!session) {
+                                    toast.error('Please sign in to save colleges');
+                                    return;
+                                  }
+                                  await fetch('/api/saved', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ collegeId: item.collegeId }),
+                                  });
+                                  toast.success('College saved!');
+                                }}
+                                className="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                              >
+                                <Bookmark className="h-4 w-4" />
+                              </button>
+                              <Link href={`/colleges/${item.collegeId}`}>
+                                <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-blue-600 rounded-lg">
+                                  <ArrowUpRight className="h-4 w-4" />
+                                </Button>
+                              </Link>
+                            </div>
                           </TableCell>
                         </TableRow>
                       ))}
