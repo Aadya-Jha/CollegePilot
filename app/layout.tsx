@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next';
+import { Toaster } from 'sonner';
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-slate-50 text-slate-900">
         {children}
+        <Toaster position="top-right" richColors />
         <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" />
         <script dangerouslySetInnerHTML={{
           __html: `

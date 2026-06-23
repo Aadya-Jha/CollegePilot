@@ -1,213 +1,256 @@
-// src/app/compare/page.tsx
 'use client';
 
-import { useState } from 'react';
-import collegesData from '@/data/colleges.json';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { X, Plus, Star, IndianRupee, Award, Briefcase, MapPin } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Sparkles, HelpCircle, GraduationCap, ArrowUpRight, AlertCircle } from 'lucide-react';
+import { toast } from 'sonner';
+import Link from 'next/link';
 
-export default function ComparePage() {
-  // Store the IDs of up to 3 colleges being compared
-  const [selectedIds, setSelectedIds] = useState<string[]>([
-    collegesData[0]?.id || '', 
-    collegesData[1]?.id || ''
-  ]);
+interface Course {
+  name: string;
+  cutoffRank: number;
+  fees: number;
+}
 
-  // Fetch complete data objects for the chosen colleges
-  const activeColleges = selectedIds
-    .map(id => collegesData.find(c => c.id === id))
-    .filter(Boolean);
+interface College {
+  id: string;
+  name: string;
+  location: string;
+  courses: Course[];
+}
 
-  // Get colleges available to add (not currently selected)
-  const availableColleges = collegesData.filter(c => !selectedIds.includes(c.id));
+interface PredictionResult {
+  collegeId: string;
+  collegeName: string;
+  location: string;
+  courseName: string;
+  cutoffRank: number;
+  fees: number;
+  chance: 'High Chance' | 'Medium Chance' | 'Dream Match';
+}
 
-  const handleRemove = (idToRemove: string) => {
-    setSelectedIds(prev => prev.filter(id => id !== idToRemove));
-  };
+export default function PredictorPage() {
+  const [rank, setRank] = useState<string>('');
+  const [stream, setStream] = useState<string>('All');
+  const [predictions, setPredictions] = useState<PredictionResult[]>([]);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
+  const [colleges, setColleges] = useState<College[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const handleAdd = (idToAdd: string) => {
-    if (selectedIds.length >= 3) return; // Cap at 3 for UI grid spacing
-    setSelectedIds(prev => [...prev, idToAdd]);
+  useEffect(() => {
+    const fetchColleges = async () => {
+      try {
+        const res = await fetch('/api/colleges?search=&location=All&type=All&maxFees=1000000');
+        const data = await res.json();
+        setColleges(data);
+      } catch {
+        toast.error('Failed to load college data');
+      }
+    };
+    fetchColleges();
+  }, []);
+
+  const handlePredict = (e: React.FormEvent) => {
+    e.preventDefault();
+    const userRank = parseInt(rank);
+
+    if (isNaN(userRank) || userRank <= 0) {
+      toast.error('Please enter a valid rank');
+      return;
+    }
+
+    setLoading(true);
+    const results: PredictionResult[] = [];
+
+    colleges.forEach((college) => {
+      college.courses?.forEach((course) => {
+        const matchesStream = stream === 'All' || course.name.toLowerCase().includes(stream.toLowerCase());
+
+        if (matchesStream) {
+          let chance: 'High Chance' | 'Medium Chance' | 'Dream Match' | null = null;
+
+          if (userRank <= course.cutoffRank * 0.85) {
+            chance = 'High Chance';
+          } else if (userRank <= course.cutoffRank) {
+            chance = 'Medium Chance';
+          } else if (userRank <= course.cutoffRank * 1.15) {
+            chance = 'Dream Match';
+          }
+
+          if (chance) {
+            results.push({
+              collegeId: college.id,
+              collegeName: college.name,
+              location: college.location,
+              courseName: course.name,
+              cutoffRank: course.cutoffRank,
+              fees: course.fees,
+              chance,
+            });
+          }
+        }
+      });
+    });
+
+    results.sort((a, b) => a.cutoffRank - b.cutoffRank);
+    setPredictions(results);
+    setHasSearched(true);
+    setLoading(false);
+
+    if (results.length === 0) {
+      toast.error('No colleges found for your rank');
+    } else {
+      toast.success(`Found ${results.length} colleges matching your rank!`);
+    }
   };
 
   return (
     <div className="min-h-screen bg-slate-50/50 pb-12">
       <Navbar />
-
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-        {/* Page Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Compare Colleges</h1>
-          <p className="text-slate-500 text-sm md:text-base mt-1">
-            Analyze critical metrics side-by-side to make an objective, data-backed decision.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        {/* Dynamic Selection Dropdowns Top Bar */}
-        <div className="bg-white border border-slate-200 rounded-xl p-4 mb-8 shadow-sm flex flex-wrap items-center gap-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Add to Comparison Matrix:</span>
-          <div className="flex flex-wrap gap-2 items-center">
-            {selectedIds.length < 3 ? (
-              <select
-                onChange={(e) => {
-                  if (e.target.value) {
-                    handleAdd(e.target.value);
-                    e.target.value = ''; // Reset select box
-                  }
-                }}
-                defaultValue=""
-                className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-xs"
-              >
-                <option value="" disabled>Choose an institute...</option>
-                {availableColleges.map(c => (
-                  <option key={c.id} value={c.id}>{c.name}</option>
-                ))}
-              </select>
+          {/* LEFT: Input Form */}
+          <div className="lg:col-span-1">
+            <Card className="bg-white border-slate-200 shadow-sm h-fit sticky top-24">
+              <CardHeader className="bg-slate-900 text-white rounded-t-xl">
+                <CardTitle className="text-lg font-bold flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-amber-400 fill-amber-400" /> Rank Predictor
+                </CardTitle>
+                <CardDescription className="text-slate-300 text-xs">
+                  Enter your rank to find matching colleges.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <form onSubmit={handlePredict} className="space-y-5">
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Exam</label>
+                    <select className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-sm font-semibold text-slate-700 outline-none">
+                      <option>JEE Main / Advanced</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Your AIR Rank</label>
+                    <Input
+                      type="number"
+                      placeholder="e.g., 4500"
+                      value={rank}
+                      onChange={(e) => setRank(e.target.value)}
+                      required
+                      className="bg-slate-50 border-slate-200 font-semibold"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Preferred Stream</label>
+                    <select
+                      value={stream}
+                      onChange={(e) => setStream(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-sm font-semibold text-slate-700 outline-none"
+                    >
+                      <option value="All">All Disciplines</option>
+                      <option value="Computer">Computer Science</option>
+                      <option value="Electronics">Electronics & Communication</option>
+                      <option value="Mechanical">Mechanical Engineering</option>
+                    </select>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                  >
+                    {loading ? 'Predicting...' : 'Predict Colleges'}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* RIGHT: Results */}
+          <div className="lg:col-span-2">
+            {!hasSearched ? (
+              <div className="bg-white border rounded-xl border-slate-200 p-12 text-center shadow-sm flex flex-col items-center justify-center min-h-[350px]">
+                <HelpCircle className="h-12 w-12 text-slate-300 mb-3" />
+                <h3 className="font-bold text-slate-700 text-base">Enter your rank to get started</h3>
+                <p className="text-sm text-slate-400 max-w-sm mt-1">
+                  Fill in your rank and stream on the left to see matching colleges.
+                </p>
+              </div>
+            ) : predictions.length === 0 ? (
+              <div className="bg-amber-50/50 border border-amber-200 rounded-xl p-8 text-center shadow-sm flex flex-col items-center justify-center">
+                <AlertCircle className="h-12 w-12 text-amber-500 mb-2" />
+                <h3 className="font-bold text-amber-800 text-base">No Matches Found</h3>
+                <p className="text-xs text-amber-600 max-w-md mt-1">
+                  Try entering a different rank or changing the stream filter.
+                </p>
+              </div>
             ) : (
-              <span className="text-xs font-medium text-amber-600 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
-                Maximum 3 colleges reached
-              </span>
+              <Card className="bg-white border-slate-200 shadow-sm overflow-hidden">
+                <CardHeader className="pb-3 border-b">
+                  <CardTitle className="text-lg font-bold text-slate-800">
+                    {predictions.length} Colleges Found
+                  </CardTitle>
+                  <CardDescription className="text-xs">
+                    Sorted by cutoff rank — best matches first.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader className="bg-slate-50">
+                      <TableRow>
+                        <TableHead className="font-bold text-slate-700 text-xs">College</TableHead>
+                        <TableHead className="font-bold text-slate-700 text-xs">Course</TableHead>
+                        <TableHead className="font-bold text-slate-700 text-xs text-right">Cutoff Rank</TableHead>
+                        <TableHead className="font-bold text-slate-700 text-xs text-center">Chance</TableHead>
+                        <TableHead className="w-[40px]"></TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {predictions.map((item, idx) => (
+                        <TableRow key={idx} className="hover:bg-slate-50/50">
+                          <TableCell className="p-4">
+                            <p className="font-bold text-slate-800 text-sm">{item.collegeName}</p>
+                            <p className="text-[11px] text-slate-400 mt-0.5">{item.location}</p>
+                          </TableCell>
+                          <TableCell className="p-4 text-sm font-medium text-slate-600">
+                            {item.courseName}
+                          </TableCell>
+                          <TableCell className="p-4 text-right font-bold text-slate-700 text-sm">
+                            {item.cutoffRank.toLocaleString('en-IN')}
+                          </TableCell>
+                          <TableCell className="p-4 text-center">
+                            <span className={`inline-block text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border ${
+                              item.chance === 'High Chance'
+                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                : item.chance === 'Medium Chance'
+                                ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                : 'bg-amber-50 text-amber-700 border-amber-200'
+                            }`}>
+                              {item.chance}
+                            </span>
+                          </TableCell>
+                          <TableCell className="p-4 text-right">
+                            <Link href={`/colleges/${item.collegeId}`}>
+                              <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-blue-600 rounded-lg">
+                                <ArrowUpRight className="h-4 w-4" />
+                              </Button>
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
             )}
           </div>
         </div>
-
-        {/* Matrix Grid Canvas */}
-        {activeColleges.length === 0 ? (
-          <Card className="border-dashed border-2 py-16 text-center">
-            <CardContent>
-              <p className="text-slate-400 font-medium mb-4">No colleges selected for comparison matrix matrix rows.</p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-            <Table>
-              <TableHeader className="bg-slate-50">
-                <TableRow>
-                  {/* Metric Row Label Column */}
-                  <TableHead className="w-[220px] font-bold text-slate-500 uppercase tracking-wider text-xs">
-                    Parameters
-                  </TableHead>
-                  
-                  {/* Dynamic College Columns */}
-                  {activeColleges.map((college) => (
-                    <TableHead key={college!.id} className="p-6 min-w-[250px] relative border-l border-slate-100">
-                      <div className="flex justify-between items-start gap-4">
-                        <div className="font-bold text-slate-800 text-sm md:text-base leading-tight pr-4">
-                          {college!.name}
-                        </div>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          onClick={() => handleRemove(college!.id)}
-                          className="h-6 w-6 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-full absolute top-4 right-4"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </div>
-                      <p className="text-xs text-slate-400 font-medium mt-1 flex items-center gap-0.5">
-                        <MapPin className="h-3 w-3" /> {college!.location}
-                      </p>
-                    </TableHead>
-                  ))}
-                  
-                  {/* Empty Fill Blocks to retain UI symmetry */}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, idx) => (
-                    <TableHead key={idx} className="bg-slate-50/40 border-l border-slate-100 p-6 text-center text-xs text-slate-400 italic">
-                      Empty Slot (Add Above)
-                    </TableHead>
-                  ))}
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                {/* ROW 1: RATING OVERVIEW */}
-                <TableRow className="hover:bg-transparent">
-                  <TableCell className="font-bold text-slate-700 text-xs bg-slate-50/30">Overall Rating</TableCell>
-                  {activeColleges.map((college) => (
-                    <TableCell key={college!.id} className="border-l p-4">
-                      <div className="flex items-center gap-1.5 font-bold text-slate-800 text-sm">
-                        <Star className="h-4 w-4 fill-amber-500 text-amber-500" />
-                        {college!.overallRating} <span className="text-slate-400 font-normal text-xs">/ 5</span>
-                      </div>
-                    </TableCell>
-                  ))}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, i) => <TableCell key={i} className="border-l bg-slate-50/10" />)}
-                </TableRow>
-
-                {/* ROW 2: NATIONAL RANKING */}
-                <TableRow className="hover:bg-transparent">
-                  <TableCell className="font-bold text-slate-700 text-xs bg-slate-50/30">NIRF Ranking</TableCell>
-                  {activeColleges.map((college) => (
-                    <TableCell key={college!.id} className="border-l p-4 font-semibold text-slate-800 text-sm">
-                      {college!.NIRFRank ? (
-                        <span className="flex items-center gap-1 text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded text-xs w-fit">
-                          <Award className="h-3.5 w-3.5" /> Rank #{college!.NIRFRank}
-                        </span>
-                      ) : 'N/A'}
-                    </TableCell>
-                  ))}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, i) => <TableCell key={i} className="border-l bg-slate-50/10" />)}
-                </TableRow>
-
-                {/* ROW 3: COST ANALYSIS */}
-                <TableRow className="hover:bg-transparent">
-                  <TableCell className="font-bold text-slate-700 text-xs bg-slate-50/30">Average Annual Fees</TableCell>
-                  {activeColleges.map((college) => (
-                    <TableCell key={college!.id} className="border-l p-4 font-bold text-slate-800 text-sm">
-                      <div className="flex items-center text-slate-700">
-                        <IndianRupee className="h-3.5 w-3.5 text-slate-400" />
-                        {college!.fees >= 100000 ? `${(college!.fees / 100000).toFixed(2)} Lakh` : college!.fees.toLocaleString('en-IN')}
-                      </div>
-                    </TableCell>
-                  ))}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, i) => <TableCell key={i} className="border-l bg-slate-50/10" />)}
-                </TableRow>
-
-                {/* ROW 4: AVERAGE RECRUITMENT PERFORMANCE */}
-                <TableRow className="hover:bg-transparent">
-                  <TableCell className="font-bold text-slate-700 text-xs bg-slate-50/30">Average Placement</TableCell>
-                  {activeColleges.map((college) => (
-                    <TableCell key={college!.id} className="border-l p-4 font-bold text-emerald-600 text-sm">
-                      {college!.placements.averagePackage}
-                    </TableCell>
-                  ))}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, i) => <TableCell key={i} className="border-l bg-slate-50/10" />)}
-                </TableRow>
-
-                {/* ROW 5: MAXIMUM OUTBOUND PAYOUT PACKAGE */}
-                <TableRow className="hover:bg-transparent">
-                  <TableCell className="font-bold text-slate-700 text-xs bg-slate-50/30">Highest Placement</TableCell>
-                  {activeColleges.map((college) => (
-                    <TableCell key={college!.id} className="border-l p-4 font-bold text-indigo-600 text-sm">
-                      {college!.placements.highestPackage}
-                    </TableCell>
-                  ))}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, i) => <TableCell key={i} className="border-l bg-slate-50/10" />)}
-                </TableRow>
-
-                {/* ROW 6: RECRUITER BRAND PRESENCE */}
-                <TableRow className="hover:bg-transparent">
-                  <TableCell className="font-bold text-slate-700 text-xs bg-slate-50/30">Top Recruiters</TableCell>
-                  {activeColleges.map((college) => (
-                    <TableCell key={college!.id} className="border-l p-4">
-                      <div className="flex flex-wrap gap-1">
-                        {college!.placements.topRecruiters.slice(0, 3).map((comp, idx) => (
-                          <span key={idx} className="bg-slate-100 text-slate-600 border px-2 py-0.5 rounded text-[10px] font-medium">
-                            {comp}
-                          </span>
-                        ))}
-                      </div>
-                    </TableCell>
-                  ))}
-                  {Array.from({ length: 3 - activeColleges.length }).map((_, i) => <TableCell key={i} className="border-l bg-slate-50/10" />)}
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-        )}
       </main>
     </div>
   );
