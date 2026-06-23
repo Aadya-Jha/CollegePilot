@@ -15,6 +15,8 @@ const serif = Source_Serif_4({
 export const metadata: Metadata = {
   title: "CollegePilot",
   description: "Discover and compare the best colleges in India",
+  manifest: "/manifest.json",
+  themeColor: "#1E3A5F",
 };
 
 export default function RootLayout({
