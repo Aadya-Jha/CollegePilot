@@ -118,11 +118,11 @@ export default function PredictorPage() {
           {/* LEFT: Input Form */}
           <div className="lg:col-span-1">
             <Card className="bg-white border-slate-200 shadow-sm h-fit sticky top-24">
-              <CardHeader className="bg-slate-900 text-white rounded-t-xl">
-                <CardTitle className="text-lg font-bold flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-amber-400 fill-amber-400" /> Rank Predictor
+              <CardHeader className="border-b border-slate-100 pb-4">
+                <CardTitle className="text-lg font-serif font-bold text-slate-900 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-green-700" /> Rank Predictor
                 </CardTitle>
-                <CardDescription className="text-slate-300 text-xs">
+                <CardDescription className="text-slate-500 text-xs">
                   Enter your rank to find matching colleges.
                 </CardDescription>
               </CardHeader>
@@ -164,7 +164,7 @@ export default function PredictorPage() {
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                    className="w-full bg-green-700 hover:bg-green-800 text-white font-bold"
                   >
                     {loading ? 'Predicting...' : 'Predict Colleges'}
                   </Button>
@@ -230,7 +230,7 @@ export default function PredictorPage() {
                               item.chance === 'High Chance'
                                 ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                                 : item.chance === 'Medium Chance'
-                                ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                ? 'bg-green-50 text-green-700 border-blue-200'
                                 : 'bg-amber-50 text-amber-700 border-amber-200'
                             }`}>
                               {item.chance}
@@ -252,12 +252,12 @@ export default function PredictorPage() {
                                   });
                                   toast.success('College saved!');
                                 }}
-                                className="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                                className="p-1.5 rounded-lg text-slate-400 hover:text-green-700 hover:bg-green-50 transition-colors"
                               >
                                 <Bookmark className="h-4 w-4" />
                               </button>
                               <Link href={`/colleges/${item.collegeId}`}>
-                                <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-blue-600 rounded-lg">
+                                <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-green-700 rounded-lg">
                                   <ArrowUpRight className="h-4 w-4" />
                                 </Button>
                               </Link>

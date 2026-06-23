@@ -39,19 +39,19 @@ export default function RootLayout({
         <SessionWrapper>
           {children}
           <Toaster position="top-right" richColors />
+          <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                  pageLanguage: 'en',
+                  includedLanguages: 'hi,ta,te,bn,mr,gu',
+                  layout: google.translate.TranslateElement.InlineLayout.DROPDOWN
+                }, 'google_translate_element');
+              }
+            `
+          }} />
         </SessionWrapper>
-        <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" />
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'hi,ta,te,bn,mr,gu',
-                layout: google.translate.TranslateElement.InlineLayout.DROPDOWN
-              }, 'google_translate_element');
-            }
-          `
-        }} />
       </body>
     </html>
   );

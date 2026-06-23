@@ -36,7 +36,7 @@ export default function NavbarClient() {
           <Link href="/saved" className="text-slate-600 hover:text-slate-900 transition-colors">
             Saved
           </Link>
-          <Link href="/auth/signin" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <Link href="/auth/signin" className="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 transition-colors">
             Sign In
           </Link>
         </>

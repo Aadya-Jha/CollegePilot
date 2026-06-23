@@ -40,7 +40,7 @@ export default function LanguageToggle() {
             title={lang.full}
             className={`text-xs px-2 py-1 rounded font-medium transition-colors ${
             active === lang.code
-                ? 'bg-blue-600 text-white'
+                ? 'bg-green-700 text-white'
                 : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
             }`}
         >

@@ -76,12 +76,12 @@ export default function CollegeCard({ college }: CollegeCardProps) {
 
   return (
     <Link href={`/colleges/${college.id}`}>
-      <div className="bg-white border border-slate-200 rounded-xl p-5 border-l-4 border-l-blue-600 hover:border-blue-300 hover:shadow-md transition-all duration-200 cursor-pointer h-full flex flex-col justify-between">
+      <div className="bg-white border border-slate-200 rounded-xl p-5 border-l-4 border-l-green-700 hover:border-green-300 hover:shadow-md transition-all duration-200 cursor-pointer h-full flex flex-col justify-between">
 
         {/* Top Row */}
         <div>
           <div className="flex items-start justify-between mb-3">
-            <div className="h-11 w-11 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center font-bold text-blue-700 text-sm flex-shrink-0">
+            <div className="h-11 w-11 rounded-lg bg-green-50 border border-blue-100 flex items-center justify-center font-bold text-green-700 text-sm flex-shrink-0">
               {initials || college.name.substring(0, 2).toUpperCase()}
             </div>
             <div className="flex items-center gap-2">
@@ -90,8 +90,8 @@ export default function CollegeCard({ college }: CollegeCardProps) {
                 disabled={saving}
                 className={`p-1.5 rounded-lg transition-colors ${
                   saved
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-slate-400 hover:text-blue-600 hover:bg-blue-50'
+                    ? 'text-green-700 bg-green-50'
+                    : 'text-slate-400 hover:text-green-700 hover:bg-green-50'
                 }`}
               >
                 <Bookmark className={`h-4 w-4 ${saved ? 'fill-blue-600' : ''}`} />

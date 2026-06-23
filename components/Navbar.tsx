@@ -9,8 +9,8 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900">
-          <GraduationCap className="h-6 w-6 text-blue-600" />
-          <span>College<span className="text-blue-600">Pilot</span></span>
+          <GraduationCap className="h-6 w-6 text-green-700" />
+          <span>College<span className="text-green-700">Pilot</span></span>
         </Link>
 
         {/* Nav Links */}

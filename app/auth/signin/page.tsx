@@ -38,8 +38,8 @@ export default function SignInPage() {
       <div className="bg-white border border-slate-200 rounded-xl p-8 w-full max-w-md shadow-sm">
         
         <div className="flex items-center gap-2 mb-8">
-          <GraduationCap className="h-6 w-6 text-blue-600" />
-          <span className="font-bold text-xl text-slate-900">College<span className="text-blue-600">Pilot</span></span>
+          <GraduationCap className="h-6 w-6 text-green-700" />
+          <span className="font-bold text-xl text-slate-900">College<span className="text-green-700">Pilot</span></span>
         </div>
 
         <h1 className="text-2xl font-bold text-slate-900 mb-1">Sign in</h1>
@@ -54,7 +54,7 @@ export default function SignInPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
 
@@ -66,14 +66,14 @@ export default function SignInPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm bg-slate-50 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="w-full bg-green-700 text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-green-800 transition-colors disabled:opacity-50"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
@@ -81,7 +81,7 @@ export default function SignInPage() {
 
         <p className="text-center text-sm text-slate-500 mt-6">
           Don't have an account?{' '}
-          <Link href="/auth/signup" className="text-blue-600 font-semibold hover:underline">
+          <Link href="/auth/signup" className="text-green-700 font-semibold hover:underline">
             Sign up
           </Link>
         </p>

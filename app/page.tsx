@@ -74,7 +74,7 @@ export default function ListingPage() {
         {/* Top Search Hero Banner */}
         <section className="mb-12">
         <div className="max-w-4xl">
-          <p className="text-sm font-semibold tracking-wide uppercase text-blue-700 mb-3">
+          <p className="text-sm font-semibold tracking-wide uppercase text-green-700 mb-3">
             College Discovery Platform
           </p>
 
@@ -130,7 +130,7 @@ export default function ListingPage() {
 
             {loading ? (
               <div className="flex items-center justify-center py-24">
-                <Loader2 className="h-8 w-8 text-blue-600 animate-spin" />
+                <Loader2 className="h-8 w-8 text-green-700 animate-spin" />
               </div>
             ) : displayedColleges.length === 0 ? (
               <div className="text-center py-16 bg-white rounded-xl border border-dashed border-slate-300">

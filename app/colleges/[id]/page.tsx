@@ -50,7 +50,7 @@ export default function CollegeDetailPage() {
       <div className="min-h-screen bg-slate-50 flex flex-col">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
-          <Loader2 className="h-8 w-8 text-blue-600 animate-spin" />
+          <Loader2 className="h-8 w-8 text-green-700 animate-spin" />
         </div>
       </div>
     );
@@ -133,9 +133,9 @@ export default function CollegeDetailPage() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-8">
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="bg-white border border-slate-200 p-1 rounded-xl w-full justify-start overflow-x-auto gap-1 shadow-sm h-auto flex-wrap">
-            <TabsTrigger value="overview" className="rounded-lg py-2.5 px-4 font-semibold text-sm data-[state=active]:bg-slate-100 data-[state=active]:text-blue-600">Overview</TabsTrigger>
-            <TabsTrigger value="courses" className="rounded-lg py-2.5 px-4 font-semibold text-sm data-[state=active]:bg-slate-100 data-[state=active]:text-blue-600">Courses & Cutoffs</TabsTrigger>
-            <TabsTrigger value="placements" className="rounded-lg py-2.5 px-4 font-semibold text-sm data-[state=active]:bg-slate-100 data-[state=active]:text-blue-600">Placements Analytics</TabsTrigger>
+            <TabsTrigger value="overview" className="rounded-lg py-2.5 px-4 font-semibold text-sm data-[state=active]:bg-slate-100 data-[state=active]:text-green-700">Overview</TabsTrigger>
+            <TabsTrigger value="courses" className="rounded-lg py-2.5 px-4 font-semibold text-sm data-[state=active]:bg-slate-100 data-[state=active]:text-green-700">Courses & Cutoffs</TabsTrigger>
+            <TabsTrigger value="placements" className="rounded-lg py-2.5 px-4 font-semibold text-sm data-[state=active]:bg-slate-100 data-[state=active]:text-green-700">Placements Analytics</TabsTrigger>
           </TabsList>
 
           {/* TAB CONTENT: OVERVIEW */}
@@ -202,7 +202,7 @@ export default function CollegeDetailPage() {
                           <TableCell className="font-semibold text-slate-800">{course.name}</TableCell>
                           <TableCell className="text-slate-500 text-sm">{course.duration}</TableCell>
                           <TableCell className="text-right font-medium text-slate-700">₹{course.fees.toLocaleString('en-IN')}</TableCell>
-                          <TableCell className="text-right font-bold text-blue-600 bg-blue-50/30">{course.cutoffRank.toLocaleString('en-IN')}</TableCell>
+                          <TableCell className="text-right font-bold text-green-700 bg-green-50/30">{course.cutoffRank.toLocaleString('en-IN')}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

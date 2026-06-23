@@ -81,7 +81,7 @@ export default function ComparePage() {
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Compare Colleges</h1>
+          <h1 className="text-3xl font-serif font-bold text-slate-900 tracking-tight">Compare Colleges</h1>
           <p className="text-slate-500 text-sm mt-1">
             Analyze critical metrics side-by-side to make a data-backed decision.
           </p>
@@ -98,7 +98,7 @@ export default function ComparePage() {
                 }
               }}
               defaultValue=""
-              className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-green-600"
             >
               <option value="" disabled>Choose a college...</option>
               {availableColleges.map(c => (
@@ -173,7 +173,7 @@ export default function ComparePage() {
                   {activeColleges.map((college) => (
                     <TableCell key={college.id} className="border-l p-4 font-semibold text-slate-800 text-sm">
                       {college.nirfRank ? (
-                        <span className="flex items-center gap-1 text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded text-xs w-fit">
+                        <span className="flex items-center gap-1 text-amber-700 bg-yellow-200 border border-amber-100 px-2 py-0.5 rounded text-xs w-fit">
                           <Award className="h-3.5 w-3.5" /> Rank #{college.nirfRank}
                         </span>
                       ) : 'N/A'}
