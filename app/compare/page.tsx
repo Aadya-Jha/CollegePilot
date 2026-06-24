@@ -119,7 +119,7 @@ export default function ComparePage() {
             </CardContent>
           </Card>
         ) : (
-          <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <div className="bg-white border border-slate-200 border-l-4 border-l-green-700 rounded-xl shadow-sm overflow-hidden">
             <Table>
               <TableHeader className="bg-slate-50">
                 <TableRow>

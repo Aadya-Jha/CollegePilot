@@ -118,7 +118,7 @@ export default function PredictorPage() {
 
           {/* LEFT: Input Form */}
           <div className="lg:col-span-1">
-            <Card className="bg-white border-slate-200 shadow-sm h-fit sticky top-24">
+            <Card className="bg-white border-slate-200 border-l-4 border-l-green-700 shadow-sm h-fit sticky top-24">
               <CardHeader className="border-b border-slate-100 pb-4">
                 <CardTitle className="text-lg font-serif font-bold text-slate-900 flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-green-700" /> Rank Predictor
@@ -193,7 +193,7 @@ export default function PredictorPage() {
                 </p>
               </div>
             ) : (
-              <Card className="bg-white border-slate-200 shadow-sm overflow-x-auto">
+              <Card className="bg-white border-slate-200 border-l-4 border-l-green-700 shadow-sm overflow-x-auto">
                 <CardHeader className="pb-3 border-b">
                   <CardTitle className="text-lg font-bold text-slate-800">
                     {predictions.length} Colleges Found
